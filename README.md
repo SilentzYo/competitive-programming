@@ -1,1 +1,1 @@
-just all of my previous codeforces submitions
+just all of my previous CP submitions/problems
