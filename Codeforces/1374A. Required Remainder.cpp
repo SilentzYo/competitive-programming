@@ -5,10 +5,10 @@ int main() {
 	int t; cin >> t;
 	while (t--) {
 		int x,y,n; cin >> x >> y >> n;
-		if (x > n) {
-			cout << "0\n";
-			continue;
+		if (y-n%x <= 0) {
+			cout << n-n%x+y << endl;
+		} else {
+			cout << n-n%x-(x-y) << endl;
 		}
-		cout << y+((n-y)/x)*x << "\n";
 	}
 }
