@@ -2,14 +2,16 @@
 using namespace std;
 
 int main() {
-	string s, t, n; 
-	cin >> s >> t;
-	for (int i = 0; i <= s.length(); i++) {
-		n += s[i];
-		if (n.length() >= t.length() && n.substr(n.length() - t.length()) == t) {
-			n.resize(n.length()-t.length());
-		}
-	}
-	cout << n;
-	return 0;
+    freopen ("censor.in","r",stdin);
+    freopen ("censor.out","w",stdout);
+	string s, t, r; cin >> s >> t;
+    for (int i = 0; i < s.size(); i++) {
+        r += s[i];
+
+        if (r.size () >= t.size() && r.substr(r.size()-t.size()) == t) {
+            r.resize(r.size()-t.size());
+        }
+    }
+    cout << r << endl;
+    return 0;
 }
