@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+
+bool findLowerPair(int id, vector<pair<int,int>> cows, int &left, int idsum) {
+    while (left <= id && cows[left+1].first + id <= idsum) {
+        left++;
+    }
+    if (id + left == idsum) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// int change (int id, vector<pair<int,int>> cows, int )
+
+int main() {
+	int n, a, b; cin >> n >> a >> b;
+    vector<pair<int,int>> cows(n);
+    for (pair<int,int> cow : cows) {
+        cin >> cow.second >> cow.first;
+    }
+    sort(cows.begin(), cows.end());
+
+    int lefta = 0, leftb = 0;
+    ll sum = 0;
+    for (int i = n-1; i >= 0; i++) {
+        if (cows[i].first > b || cows[i].second == 0) {
+            continue; 
+        }
+        
+        int id = cows[i].first;
+
+        if (findLowerPair(id, cows, leftb, b)) {
+            if (leftb == id) {
+                sum += (cows[i].second)/2;
+                cows[i].second -= ((int)((cows[i].second)/2))*2;
+            } else {
+                int change = min(cows[i].second, cows[lefta].second);
+                sum += change;
+                cows[i].second -= change;
+                cows[lefta].second -= change; 
+            }
+        }
+
+        lefta = leftb;
+
+        if (findLowerPair(id, cows, lefta, a)) {
+            if (lefta == id) {
+                sum += (cows[i].second)/2;
+                cows[i].second -= ((int)((cows[i].second)/2))*2;
+            } else {
+                int change = min(cows[i].second, cows[lefta].second);
+                sum += change;
+                cows[i].second -= change;
+                cows[lefta].second -= change; 
+            }
+        }
+    }
+
+
+}
